@@ -1,0 +1,24 @@
+{
+  "name": "projet-4_node-init",
+  "version": "1.0.0",
+  "description": "Node init pour compil sass auto",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --watch starterOnly/partials/main.scss:starterOnly/public/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Halloween47/GameOn-website-FR.git"
+  },
+  "author": "thomasl.dw20@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Halloween47/GameOn-website-FR/issues"
+  },
+  "homepage": "https://github.com/Halloween47/GameOn-website-FR#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "sass": "^1.62.0"
+  }
+}
