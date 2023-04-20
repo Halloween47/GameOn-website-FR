@@ -6,4 +6,20 @@
   display: none;
 }
 
+.error-email {
+  display: none;
+}
+
+.error-birthday {
+  display: none;
+}
+
+.error-checkbox {
+  display: none;
+}
+
+#required {
+  color: inherit;
+}
+
 /*# sourceMappingURL=style.css.map */
