@@ -22,4 +22,32 @@
   color: inherit;
 }
 
+.confirm {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(26, 39, 156, 0.4);
+}
+.confirm .content {
+  height: 680px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.confirm .content p {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 100;
+}
+.confirm .content input {
+  position: absolute;
+  bottom: 20px;
+}
+
 /*# sourceMappingURL=style.css.map */

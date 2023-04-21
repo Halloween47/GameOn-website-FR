@@ -3,6 +3,8 @@
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const crossModal = document.querySelector(".close");
+const modalConfirm = document.querySelector(".confirm");
+const btnFermer = document.querySelector("#fermer");
 
 const globalForm = document.querySelector("form");
 const formData = document.querySelectorAll(".formData");
@@ -42,6 +44,10 @@ function launchModal() {
 
 function closeModal() {
   modalbg.style.display = "none";
+}
+function closeConfirm() {
+  // modalConfirm.style.display = "none";
+  location.reload();
 }
 
 const checkFirstName = () => {
@@ -178,6 +184,8 @@ const formValidate = () => {
   if (checkFirstName()&&checkLastName()&&checkEmail()&&checkBirthday()&&checkQuantity()&&checkCheckbox()&&checkTerm()) {
     // alert("Validation OK !");
     alert(buttonSubmit.value);
+    modalbg.style.display = "none";
+    modalConfirm.style.display = "block";
   }
   else {
     alert("Il y a un probleme quelque part NON");
@@ -194,3 +202,5 @@ globalForm.addEventListener("submit", function(event) {
   
   event.preventDefault();
 });
+
+btnFermer.addEventListener("click", closeConfirm);
