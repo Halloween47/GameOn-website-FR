@@ -2,13 +2,12 @@
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
-const crossModal = document.querySelector(".close");
-const modalConfirm = document.querySelector(".confirm");
-const btnFermer = document.querySelector("#fermer");
 
 const globalForm = document.querySelector("form");
 const formData = document.querySelectorAll(".formData");
 
+// ELEMENTS Formulaire MODAL1
+const crossModal = document.querySelector(".close");
 const firstName = document.querySelector("#first");
 const lastName = document.querySelector("#last");
 const emailValue = document.querySelector("#email");
@@ -18,10 +17,16 @@ const checkboxes = document.querySelectorAll(".checkbox-input");
 
 const buttonSubmit = document.querySelector(".btn-submit");
 
+// MODAL Confirmation
+const modalConfirm = document.querySelector(".confirm");
+const btnFermer = document.querySelector("#fermer");
+
+// ZONE des messages d'erreurs
 const errorFirst = document.querySelector(".error-first");
 const errorLast = document.querySelector(".error-last");
 const errorEmail = document.querySelector(".error-email");
 const errorBirthday = document.querySelector(".error-birthday");
+const errorQuantity = document.querySelector(".error-quantity");
 const errorCheckbox = document.querySelector(".error-checkbox");
 const errorTerm = document.getElementById("required");
 // const errors = document.querySelector(".errors");
@@ -41,15 +46,16 @@ function editNav() {
 function launchModal() {
   modalbg.style.display = "block";
 }
-
+// close modal form
 function closeModal() {
   modalbg.style.display = "none";
 }
+// close modal confirm
 function closeConfirm() {
   // modalConfirm.style.display = "none";
   location.reload();
 }
-
+// CHECK Firstname
 const checkFirstName = () => {
   const valueFirst = firstName.value.trim();
   if (valueFirst.length > 2 && valueFirst !== '') {
@@ -63,8 +69,10 @@ const checkFirstName = () => {
     firstName.style.border =  "3px solid red";
     errorFirst.style.color = "red";
     errorFirst.style.display = "block";
+    return false;
   }
 }
+// CHECK lastsname
 const checkLastName = () => {
   const valueLast = lastName.value.trim();
   if (valueLast.length > 2 && valueLast !== '') {
@@ -80,7 +88,7 @@ const checkLastName = () => {
     errorLast.style.display = "block";
   }
 }
-
+// CHECK mail
 function isEmailValid(email){
   var emailReg = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/i);
   return emailReg.test(email);
@@ -102,7 +110,7 @@ const checkEmail = () => {
     errorEmail.style.display = "block";
   }
 }
-
+// CHECK birthday
 const isBirthdayValid = (dateInput) => {
   var birthdayValue = new Date(dateInput);
   if (isNaN(birthdayValue.getTime())) {
@@ -136,18 +144,25 @@ const checkBirthday = () => {
     errorBirthday.style.display = "block";
   }
 }
+// CHECK quantity
 const checkQuantity = () => {
   const quantityValue = quantity.value;
   if (isNaN(quantityValue) || quantityValue === "") {
     console.log("NON Ceci n'est pas un nombre");
+    quantity.style.border =  "3px solid red";
+    errorQuantity.style.color = "red";
+    errorQuantity.style.display = "block";
     return false;
+    
   }
   else {
     console.log("OK Ceci est UN nombre !");
+    quantity.style.border =  "3px solid green";
+    errorQuantity.style.display = "none";
     return true;
   }
 }
-
+// CHECK checkbox city
 const checkCheckbox = () => {
   const checkboxes = document.querySelectorAll(".checkbox-input");
   var isChecked = false;
@@ -168,6 +183,7 @@ const checkCheckbox = () => {
     errorCheckbox.style.display = "block";
   }
 }
+// CHECK Terms
 const checkTerm = () => {
   if (!checkboxTerm.checked) {
     console.log("NON les termes de son pas cocher ");
@@ -180,6 +196,7 @@ const checkTerm = () => {
     return true;
   }
 }
+// VALIDATE form
 const formValidate = () => {
   if (checkFirstName()&&checkLastName()&&checkEmail()&&checkBirthday()&&checkQuantity()&&checkCheckbox()&&checkTerm()) {
     // alert("Validation OK !");
@@ -188,19 +205,19 @@ const formValidate = () => {
     modalConfirm.style.display = "block";
   }
   else {
-    alert("Il y a un probleme quelque part NON");
+    // alert("Votre formulaire n'est pas valide !");
+    return false;
   }
 }
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-
+// launch close modal event
 crossModal.addEventListener("click", closeModal);
-
+// launch validate form event
 buttonSubmit.addEventListener("click", formValidate);
 
 globalForm.addEventListener("submit", function(event) {
-  
   event.preventDefault();
 });
-
+// launch close modal confirm event
 btnFermer.addEventListener("click", closeConfirm);

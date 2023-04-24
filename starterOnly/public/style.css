@@ -14,6 +14,10 @@
   display: none;
 }
 
+.error-quantity {
+  display: none;
+}
+
 .error-checkbox {
   display: none;
 }

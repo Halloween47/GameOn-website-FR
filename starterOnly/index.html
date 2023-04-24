@@ -94,7 +94,7 @@
     id="email"
     name="email"
     /><br>
-    <small class="error-email">test email negatif</small>
+    <small class="error-email">Statut email : incorrect</small>
   </div>
   <div
   class="formData">
@@ -111,6 +111,7 @@
 class="formData">
 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+<small class="error-quantity">Veuillez rentrer un nombre !</small>
 </div>
 <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
 <div
@@ -205,12 +206,13 @@ value="New York"
           </label>
           <br>
         </div>
-        <input
+        <!-- <button
         class="btn-submit"
         type="submit"
         class="button"
         value="C'est parti"
-        />
+        /> -->
+        <button class="btn-submit" type="submit" class="button" value="C'est parti">C'est parti</button>
       </form>
     </div>
   </div>
