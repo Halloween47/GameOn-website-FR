@@ -1,29 +1,14 @@
-.error-first {
+.errors {
+  color: red;
+  font-size: 15px;
+}
+
+.none {
   display: none;
 }
 
-.error-last {
-  display: none;
-}
-
-.error-email {
-  display: none;
-}
-
-.error-birthday {
-  display: none;
-}
-
-.error-quantity {
-  display: none;
-}
-
-.error-checkbox {
-  display: none;
-}
-
-#required {
-  color: inherit;
+.inputBorderColor {
+  border: 2px solid red;
 }
 
 .confirm {

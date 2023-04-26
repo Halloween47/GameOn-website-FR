@@ -1,39 +1,46 @@
 
-// DOM Elements
-const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
 
-const globalForm = document.querySelector("form");
-const formData = document.querySelectorAll(".formData");
-
-// ELEMENTS Formulaire MODAL1
-const crossModal = document.querySelector(".close");
-const firstName = document.querySelector("#first");
-const lastName = document.querySelector("#last");
-const emailValue = document.querySelector("#email");
-const birthdayValue = document.querySelector("#birthdate");
-const quantity = document.querySelector("#quantity");
-const checkboxes = document.querySelectorAll(".checkbox-input");
-
-const buttonSubmit = document.querySelector(".btn-submit");
-
-// MODAL Confirmation
+// == DOM Elements "Listes Modal" ==
+// Modal "SIGNUP"
+const modalSignup = document.querySelector(".bground");
+const modalSignupCross = document.querySelector(".close");
+// // MODAL Confirmation
 const modalConfirm = document.querySelector(".confirm");
 const btnFermer = document.querySelector("#fermer");
 
-// ZONE des messages d'erreurs
-const errorFirst = document.querySelector(".error-first");
-const errorLast = document.querySelector(".error-last");
-const errorEmail = document.querySelector(".error-email");
-const errorBirthday = document.querySelector(".error-birthday");
-const errorQuantity = document.querySelector(".error-quantity");
-const errorCheckbox = document.querySelector(".error-checkbox");
-const errorTerm = document.getElementById("required");
-// const errors = document.querySelector(".errors");
+// == DOM Elements "form" ==
+const form = document.querySelector("form");
+
+const firstName = document.querySelector("#first");
+const firstError = document.querySelector('#first-error');
+
+const lastName = document.querySelector("#last");
+const lastError = document.querySelector('#last-error');
+
+const emailName = document.querySelector("#email");
+const emailError = document.querySelector('.email-error');
+
+const birthdate = document.querySelector("#birthdate");
+const birthdayError = document.querySelector('#birthday-error');
+
+const quantity = document.querySelector("#quantity");
+const quantityError = document.querySelector('#quantity-error');
 
 const checkboxTerm = document.getElementById("checkbox1");
 
+const textControl = document.querySelectorAll(".text-control");
 
+
+// Bouton "je m'inscris"
+const btnSignup = document.querySelectorAll(".modal-btn");
+const btnSignupSubmit = document.querySelector(".btn-submit");
+
+
+
+// ==== Listes "FONCTIONS" ====
+// ============================
+
+// Fonctions "gestion responsive"
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -42,182 +49,216 @@ function editNav() {
     x.className = "topnav";
   }
 }
-// launch modal form
+// Fonctions "lancement de la Modal"
 function launchModal() {
-  modalbg.style.display = "block";
+  modalSignup.style.display = "block";
 }
-// close modal form
+// Focntions "fermeture de la Modal"
 function closeModal() {
-  modalbg.style.display = "none";
+  modalSignup.style.display = "none";
 }
-// close modal confirm
+// Fonction "fermeture de la modal de confirmation"
 function closeConfirm() {
   // modalConfirm.style.display = "none";
   location.reload();
 }
-// CHECK Firstname
-const checkFirstName = () => {
-  const valueFirst = firstName.value.trim();
-  if (valueFirst.length > 2 && valueFirst !== '') {
-    console.log("OK FIRST cest bon tu peux passer");
-    firstName.style.border =  "10px solid green";
-    errorFirst.style.display = "none";
+// Fonction ' verification "FIRSTNAME" '
+function isFirstnameValid() {
+  // const textControl = document.querySelectorAll(".text-control");
+  if (firstName.value.trim() === "" || firstName.value.trim().length < 2) {
+    // Le champ est vide ou la longueur est inférieure à 3 caractères
+    firstError.textContent = "Le champ ne peut pas être vide et doit être supérieure ou égale à 2 caractères !";
+  firstError.className = "errors";
+  firstName.classList.add("inputBorderColor");
+  return false;
+} else {
+  firstError.textContent = "Prénom Ok";
+  firstError.className = "none";
+  
+  firstName.classList.remove("inputBorderColor");
     return true;
   }
-  else {
-    console.log("NON FIRST pas bon tu peux pas passer");
-    firstName.style.border =  "3px solid red";
-    errorFirst.style.color = "red";
-    errorFirst.style.display = "block";
-    return false;
-  }
 }
-// CHECK lastsname
-const checkLastName = () => {
-  const valueLast = lastName.value.trim();
-  if (valueLast.length > 2 && valueLast !== '') {
-    console.log("OK LAST cest bon tu peux passer");
-    lastName.style.border =  "10px solid green";
-    errorLast.style.display = "none";
+// Fonction ' verification "LASTNAME" '
+function isLastnameValid() {
+  if (lastName.value.trim() === "" || lastName.value.trim().length < 2) {
+    // Le champ est vide ou la longueur est inférieure à 3 caractères
+    lastError.textContent = "Le champ ne peut pas être vide et doit être supérieure ou égale à 2 caractères !";
+  lastError.className = "errors";
+  lastName.classList.add("inputBorderColor");
+  return false;
+} else {
+  lastError.textContent = "Nom Ok";
+  lastError.className = "none";
+  lastName.classList.remove("inputBorderColor");
     return true;
   }
-  else {
-    console.log("NON LAST pas bon tu peux pas passer");
-    lastName.style.border =  "3px solid red";
-    errorLast.style.color = "red";
-    errorLast.style.display = "block";
-  }
 }
-// CHECK mail
-function isEmailValid(email){
+// Fonction "véricfication 'regex Email'"
+function isFormatEmailValid(email){
   var emailReg = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/i);
   return emailReg.test(email);
 }
-const checkEmail = () => {
-  const email = emailValue.value;
-  if(isEmailValid(email)){
-    console.log("OK Email valide");
-    
-    emailValue.style.border =  "10px solid green";
-    errorEmail.style.display = "none";
-    
+// Fonction "verification 'EMAIL' "
+function isEmailValid() {
+  const email = emailName.value;
+  if(isFormatEmailValid(email)) {
+    // console.log("OK Email valide");
+    emailError.textContent = "Email VALIDE !";
+
+    emailName.classList.remove("inputBorderColor");
+
+    emailError.className = "none";
     return true;
   } else {
-    console.log("NON : Email invalide");
-    
-    emailValue.style.border =  "3px solid red";
-    errorEmail.style.color = "red";
-    errorEmail.style.display = "block";
+    // console.log("NON : Email invalide");
+    emailError.textContent = "Format Email INVALIDE !";
+    emailError.className = "errors";
+    emailName.classList.add("inputBorderColor");
+    return false;
   }
 }
-// CHECK birthday
-const isBirthdayValid = (dateInput) => {
+// Fonction "verification 'BIRTHDAY' "
+function isBirthdayValid() {
+  // console.log('test birthday');
+  
+  const dateInput = birthdate.value;
   var birthdayValue = new Date(dateInput);
-  if (isNaN(birthdayValue.getTime())) {
-    console.log('NON lettre non accepté !');
-    return false;
-  }
+  
+  // Verification si la date n'est pas situé dans le futur
   var today = new Date();
   if (birthdayValue.getTime() >= today.getTime()) {
-    
-    console.log("NON Date de naissance INVALIDE : 'tu n\'es pas john connor'");
+    // console.log("NON Date de naissance INVALIDE : 'tu n\'es pas john connor'");
+    birthdayError.textContent = "Tu n\'es pas john connor";
+    birthdayError.className = "errors";
     return false;
   }
+  // Verification si la valeur est bien un nombre
+  if (isNaN(birthdayValue.getTime())) {
+    // console.log('NON lettre non accepté !');
+    birthdayError.textContent = "Lettre non accepté !";
+    birthdayError.className = "errors";
+    birthdate.classList.add("inputBorderColor");
+    
+    return false;
+  }
+  birthdayError.textContent = "accepté !";
+  birthdayError.className = "none";
+  birthdate.classList.remove("inputBorderColor");
   
   return true;
 }
-
-const checkBirthday = () => {
-  const birthday = birthdayValue.value;
-  if(isBirthdayValid(birthday)){
-    console.log("OK Birthday valide");
-    
-    birthdayValue.style.border =  "10px solid green";
-    errorBirthday.style.display = "none";
-    
-    return true;
-  } else {
-    console.log("NON birthday invalide");
-    
-    birthdayValue.style.border =  "3px solid red";
-    errorBirthday.style.color = "red";
-    errorBirthday.style.display = "block";
-  }
-}
-// CHECK quantity
-const checkQuantity = () => {
+// Fonction "verification 'QUANTITY' "
+function isQuantityValid() {
+  // console.log("test Quantity");
+  
   const quantityValue = quantity.value;
   if (isNaN(quantityValue) || quantityValue === "") {
-    console.log("NON Ceci n'est pas un nombre");
-    quantity.style.border =  "3px solid red";
-    errorQuantity.style.color = "red";
-    errorQuantity.style.display = "block";
+    // console.log("NON Ceci n'est pas un nombre");
+    quantityError.textContent = "Doit être un chiffre !";
+    quantityError.className = "errors";
+    quantity.classList.add("inputBorderColor");
+    
     return false;
     
   }
   else {
-    console.log("OK Ceci est UN nombre !");
-    quantity.style.border =  "3px solid green";
-    errorQuantity.style.display = "none";
+    // console.log("OK  quantité VALIDE !");
+    quantityError.textContent = "OK quantité VALIDE";
+    quantityError.className = "none";
+    quantity.classList.remove("inputBorderColor");
     return true;
   }
 }
-// CHECK checkbox city
-const checkCheckbox = () => {
-  const checkboxes = document.querySelectorAll(".checkbox-input");
+// Fonction "verification 'RADIO' "
+function isRadioValid() {
+  // console.log("test RADIO");
+  const radios = document.querySelectorAll(".checkbox-input");
+  const radiosError = document.querySelector('#checkbox-error');
+  
   var isChecked = false;
-  for (var i = 0; i < checkboxes.length; i++) {
-    if (checkboxes[i].type == "radio" && checkboxes[i].checked) {
+  for (var i = 0; i < radios.length; i++) {
+    if (radios[i].type == "radio" && radios[i].checked) {
       isChecked = true;
       break;
     }
   }
   if (isChecked) {
-    console.log("OK NICKEL Au moins une checkbox est cochée");
-    errorCheckbox.style.display = "none";
+    // console.log("OK NICKEL Au moins une checkbox est cochée");
+    radiosError.textContent = "";
+    // errorCheckbox.style.display = "none";
+    radiosError.className = "none";
     return true;
   } else {
-    console.log("NON Aucune checkbox n'est cochée");
+    // console.log("NON Aucune checkbox n'est cochée");
+    radiosError.textContent = "Vous devez choisir une option.";
+    radiosError.className = "errors";
+
     // checkboxes.style.border =  "3px solid red";
-    errorCheckbox.style.color = "red";
-    errorCheckbox.style.display = "block";
+    // errorCheckbox.style.color = "red";
+    // errorCheckbox.style.display = "block";
   }
 }
-// CHECK Terms
-const checkTerm = () => {
+// Fonction "verification 'des conditions d'utilisation' "
+function isTermsValid() {
+  // console.log("Test TERMS");
   if (!checkboxTerm.checked) {
-    console.log("NON les termes de son pas cocher ");
+    // console.log("NON les termes de son pas cocher ");
     alert("Vous devez avoir lu et accepté les conditions d'utilisation.");
-    errorTerm.style.color= 'red';
+    // errorTerm.style.color= 'red';
     return false;
   }
   else {
-    console.log('OK pour les conditions');
+    // console.log('OK pour les conditions');
     return true;
   }
 }
-// VALIDATE form
-const formValidate = () => {
-  if (checkFirstName()&&checkLastName()&&checkEmail()&&checkBirthday()&&checkQuantity()&&checkCheckbox()&&checkTerm()) {
-    // alert("Validation OK !");
-    alert(buttonSubmit.value);
-    modalbg.style.display = "none";
-    modalConfirm.style.display = "block";
-  }
-  else {
-    // alert("Votre formulaire n'est pas valide !");
+// Fonction "verification si 'Formulaire valide' "
+function isFormValid() {
+  isFirstnameValid();
+  isLastnameValid();
+  isEmailValid();
+  isBirthdayValid();
+  isQuantityValid();
+  isRadioValid();
+  isTermsValid();
+
+  if (isFirstnameValid()&&
+  isLastnameValid()&&
+  isEmailValid()&&
+  isBirthdayValid()&&
+  isQuantityValid()&&
+  isRadioValid()&&
+  isTermsValid()) {
+    // console.log("Formulaire valide");
+    // alert("Formulaire valide");
+    return true;
+  } else {
+    // console.log("Formulaire invalide");
     return false;
   }
 }
-// launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-// launch close modal event
-crossModal.addEventListener("click", closeModal);
-// launch validate form event
-buttonSubmit.addEventListener("click", formValidate);
 
-globalForm.addEventListener("submit", function(event) {
+// ==== Listes "EVENTS" ====
+// ============================
+
+// Event "Lancement de la modal "SIGNUP"
+btnSignup.forEach((btn) => btn.addEventListener("click", launchModal));
+// Event "Fermeture de la modal "SIGNUP"
+modalSignupCross.addEventListener("click", closeModal);
+// Event "Fermeture de la modal "CONFIRMATION"
+modalConfirm.addEventListener("click", closeConfirm);
+// Event "soumission Formulaire"
+form.addEventListener("submit", function(event) {
+  // Empêcher la soumission par défaut du formulaire
   event.preventDefault();
+
+  
+
+  // isFormValid();
+  if (isFormValid()) {
+    // form.submit();
+    modalSignup.style.display = "none";
+    modalConfirm.style.display = "block";
+  }
 });
-// launch close modal confirm event
-btnFermer.addEventListener("click", closeConfirm);

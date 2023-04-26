@@ -72,7 +72,8 @@
         name="first"
         minlength="2"
         /><br>
-        <small class="error-first">Veuillez entrer 2 caractères ou plus pour le champ du prénom.</small>
+        <!-- <small class="error-first">Veuillez entrer 2 caractères ou plus pour le champ du prénom.</small> -->
+        <span id="first-error"></span>
       </div>
       <div
       class="formData">
@@ -83,7 +84,8 @@
       id="last"
       name="last"
       /><br>
-      <small class="error-last">"Veuillez entrer 2 caractères ou plus pour le champ du nom."</small>
+      <!-- <small class="error-last">"Veuillez entrer 2 caractères ou plus pour le champ du nom."</small> -->
+      <span id="last-error"></span>
     </div>
     <div
     class="formData">
@@ -94,7 +96,8 @@
     id="email"
     name="email"
     /><br>
-    <small class="error-email">Statut email : incorrect</small>
+    <!-- <small class="error-email">Statut email : incorrect</small> -->
+    <span class="email-error"></span>
   </div>
   <div
   class="formData">
@@ -105,15 +108,20 @@
   id="birthdate"
   name="birthdate"
   /><br>
-  <small class="error-birthday">"Vous devez entrer votre date de naissance."</small>
+  <!-- <small class="error-birthday">"Vous devez entrer votre date de naissance."</small> -->
+  <span id="birthday-error"></span>
 </div>
 <div
 class="formData">
 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
-<small class="error-quantity">Veuillez rentrer un nombre !</small>
+<!-- <small class="error-quantity">Veuillez rentrer un nombre !</small> -->
+<span id="quantity-error"></span>
+
 </div>
 <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
+<!-- <small class="error-checkbox">"Vous devez choisir une option."</small> -->
+<span id="checkbox-error"></span><br/>
 <div
 class="formData">
 <input
@@ -123,7 +131,7 @@ id="location1"
 name="location"
 value="New York"
 />
-<small class="error-checkbox">"Vous devez choisir une option."</small>
+
 
 <label class="checkbox-label" for="location1">
   <span class="checkbox-icon"></span>
