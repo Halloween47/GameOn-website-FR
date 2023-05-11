@@ -62,6 +62,7 @@ function closeConfirm() {
   // modalConfirm.style.display = "none";
   location.reload();
 }
+// Fonction "véricfication 'regex Name'"
 function isFormatNameValid(formatNom){
   var nameRegex = new RegExp(/^[a-zA-ZÀ-ÿ]+([ '-][a-zA-ZÀ-ÿ]+)*$/i);
 
@@ -251,10 +252,25 @@ function isFormValid() {
 
 // Event "Lancement de la modal "SIGNUP"
 btnSignup.forEach((btn) => btn.addEventListener("click", launchModal));
+
 // Event "Fermeture de la modal "SIGNUP"
 modalSignupCross.addEventListener("click", closeModal);
 // Event "Fermeture de la modal "CONFIRMATION"
 modalConfirm.addEventListener("click", closeConfirm);
+
+// Event "Vérification à la saisie du champ firstname"
+firstName.addEventListener("input", isFirstnameValid);
+// Event "Vérification à la saisie du champ lastname"
+lastName.addEventListener("input", isLastnameValid);
+// Event "Vérification à la saisie du champ email"
+emailName.addEventListener("input", isEmailValid);
+// Event "Vérification à la saisie du champ date de naissance"
+birthdate.addEventListener("input", isBirthdayValid);
+// Event "Vérification à la saisie du champ quantité"
+quantity.addEventListener("input", isQuantityValid);
+// Event "Vérification à la saisie du champ radio"
+checkboxTerm.addEventListener("input", isRadioValid);
+
 // Event "soumission Formulaire"
 form.addEventListener("submit", function(event) {
   // Empêcher la soumission par défaut du formulaire
