@@ -62,10 +62,16 @@ function closeConfirm() {
   // modalConfirm.style.display = "none";
   location.reload();
 }
+function isFormatNameValid(formatNom){
+  var nameRegex = new RegExp(/^[a-zA-ZÀ-ÿ]+([ '-][a-zA-ZÀ-ÿ]+)*$/i);
+
+  return nameRegex.test(formatNom);
+}
 // Fonction ' verification "FIRSTNAME" '
 function isFirstnameValid() {
   // const textControl = document.querySelectorAll(".text-control");
-  if (firstName.value.trim() === "" || firstName.value.trim().length < 2) {
+  const firstNameValue = firstName.value.trim();
+  if (firstNameValue === "" || firstNameValue.length < 2 || !isFormatNameValid(firstNameValue)) {
     // Le champ est vide ou la longueur est inférieure à 3 caractères
     firstError.textContent = "Le champ ne peut pas être vide et doit être supérieure ou égale à 2 caractères !";
   firstError.className = "errors";
@@ -81,7 +87,8 @@ function isFirstnameValid() {
 }
 // Fonction ' verification "LASTNAME" '
 function isLastnameValid() {
-  if (lastName.value.trim() === "" || lastName.value.trim().length < 2) {
+  const lastNameValue = lastName.value.trim();
+  if (lastNameValue === "" || lastNameValue.length < 2 || !isFormatNameValid(lastNameValue)) {
     // Le champ est vide ou la longueur est inférieure à 3 caractères
     lastError.textContent = "Le champ ne peut pas être vide et doit être supérieure ou égale à 2 caractères !";
   lastError.className = "errors";
